@@ -3,4 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="text_border_focused">#FDB890</color>
+    <color name="text_border_normal">#E5E5E5</color>
+
+    <color name="colorPrimary_alpha33">#64e42604</color>
+    <color name="gravy_light">#999999</color>
 </resources>

@@ -4,8 +4,8 @@
     <solid android:color="#F2F2F2" />
     <!-- 大小 -->
     <size
-        android:width="25dp"
-        android:height="25dp" /><!-- 宽度和高度 -->
+        android:width="10dp"
+        android:height="10dp" /><!-- 宽度和高度 -->
     <corners android:radius="2dp" />
 
     <stroke

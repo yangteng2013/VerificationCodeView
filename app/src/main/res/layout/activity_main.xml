@@ -17,18 +17,18 @@
         app:icv_et_bg_focus="@drawable/shape_icv_et_bg_focus"
         app:icv_et_bg_normal="@drawable/shape_icv_et_bg_normal"
         app:icv_et_divider_drawable="@drawable/shape_divider_identifying"
-        app:icv_et_number="6"
-        app:icv_et_pwd="true"
-        app:icv_et_pwd_radius="10dp"
+        app:icv_et_number="17"
+        app:icv_et_pwd="false"
+        app:icv_et_pwd_radius="5dp"
         app:icv_et_text_color="#000000"
-        app:icv_et_width="50dp" />
+        app:icv_et_width="5dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="5dp"
-        android:onClick="onClick"
+        android:onClick="onClickClear"
         android:text="清空" />
 
 
@@ -36,7 +36,81 @@
         android:id="@+id/icv_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:icv_et_number="5" />
+        app:icv_et_number="17"
+        app:icv_et_text_size="9sp"
+        />
 
+
+    <jack.com.verificationcodeview.view.VerificationCodeView
+        android:id="@+id/view_verification"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:vcv_code_size="16sp"
+        app:vcv_code_bg_focus="@drawable/bg_text_focused"
+        app:vcv_code_bg_normal="@drawable/bg_text_normal"
+        app:vcv_code_color="@color/text_border_focused"
+        app:vcv_code_number="4"
+        />
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="提交"/>
+    <Button
+        android:id="@+id/btn_clear"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="清空"/>
+
+    <com.tuo.customview.DefineCodeView
+        android:id="@+id/dcv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        app:count="17"
+        app:textSize="8sp"
+        app:editWidth="20dp"
+        app:textColor="@color/colorPrimary"
+        app:cet_et_bg_focus="@drawable/shape_icv_et_bg_focus"
+        app:cet_et_bg_normal="@drawable/shape_icv_et_bg_normal"
+        />
+
+    <jack.com.verificationcodeview.view.VerificationCodeEditText
+        android:id="@+id/am_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:inputType="number"
+        android:text="123"
+        android:textColor="@color/colorPrimary"
+        android:textSize="40sp"
+        app:bottomLineHeight="2dp"
+        app:bottomLineNormalColor="@color/gravy_light"
+        app:bottomLineSelectedColor="@color/colorAccent"
+        app:cursorColor="@android:color/holo_purple"
+        app:figures="4"
+        app:selectedBackgroundColor="@color/colorPrimary_alpha33"
+        app:verCodeMargin="10dp"/>
+
+    <jack.com.verificationcodeview.view.VerificationCodeEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:cursorVisible="false"
+        android:inputType="number"
+        android:text="1234"
+        android:textColor="@color/colorPrimary"
+        android:textSize="40sp"
+        app:bottomLineHeight="2dp"
+        app:bottomLineNormalColor="@color/gravy_light"
+        app:bottomLineSelectedColor="@color/colorAccent"
+        app:figures="5"
+        app:selectedBackgroundColor="@color/colorPrimary_alpha33"
+        app:verCodeMargin="10dp"/>
 
 </LinearLayout>

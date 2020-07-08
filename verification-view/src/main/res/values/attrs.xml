@@ -21,4 +21,15 @@
         <!--密码模式时,圆的半径-->
         <attr name="icv_et_pwd_radius" format="dimension|reference" />
     </declare-styleable>
+
+    <declare-styleable name="CodeEditText">
+        <attr name="count" format="integer" />
+        <attr name="textSize" format="dimension"/>
+        <attr name="textColor" format="color" />
+        <attr name="editWidth" format="dimension"/>
+        <!--输入框获取焦点时边框-->
+        <attr name="cet_et_bg_focus" format="reference" />
+        <!--输入框没有焦点时边框-->
+        <attr name="cet_et_bg_normal" format="reference" />
+    </declare-styleable>
 </resources>

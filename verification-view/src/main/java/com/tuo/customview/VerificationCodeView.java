@@ -51,7 +51,7 @@ public class VerificationCodeView extends RelativeLayout {
     private float mEtPwdRadius;
 
     //存储TextView的数据 数量由自定义控件的属性传入
-    private PwdTextView[] mPwdTextViews;
+    private ItemEditText[] mPwdTextViews;
 
     private MyTextWatcher myTextWatcher = new MyTextWatcher();
 
@@ -137,10 +137,10 @@ public class VerificationCodeView extends RelativeLayout {
             etDividerDrawable.setBounds(0, 0, etDividerDrawable.getMinimumWidth(), etDividerDrawable.getMinimumHeight());
             containerEt.setDividerDrawable(etDividerDrawable);
         }
-        mPwdTextViews = new PwdTextView[etNumber];
+        mPwdTextViews = new ItemEditText[etNumber];
 
         for (int i = 0; i < mPwdTextViews.length; i++) {
-            PwdTextView textView = new PwdTextView(context);
+            ItemEditText textView = new ItemEditText(context);
             textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, etTextSize);
             textView.setTextColor(etTextColor);
             textView.setWidth(etWidth);
@@ -169,7 +169,6 @@ public class VerificationCodeView extends RelativeLayout {
     private void setListener() {
         // 监听输入内容
         et.addTextChangedListener(myTextWatcher);
-
         // 监听删除按键
         et.setOnKeyListener(new OnKeyListener() {
             @Override
@@ -188,7 +187,7 @@ public class VerificationCodeView extends RelativeLayout {
     private void setText(String inputContent) {
 
         for (int i = 0; i < mPwdTextViews.length; i++) {
-            PwdTextView tv = mPwdTextViews[i];
+            ItemEditText tv = mPwdTextViews[i];
             if (tv.getText().toString().trim().equals("")) {
                 if (mEtPwd) {
                     tv.drawPwd(mEtPwdRadius);
@@ -210,7 +209,7 @@ public class VerificationCodeView extends RelativeLayout {
     // 监听删除
     private void onKeyDelete() {
         for (int i = mPwdTextViews.length - 1; i >= 0; i--) {
-            PwdTextView tv = mPwdTextViews[i];
+            ItemEditText tv = mPwdTextViews[i];
             if (!tv.getText().toString().trim().equals("")) {
                 if (mEtPwd) {
                     tv.clearPwd();
@@ -238,7 +237,7 @@ public class VerificationCodeView extends RelativeLayout {
      */
     public String getInputContent() {
         StringBuffer buffer = new StringBuffer();
-        for (TextView tv : mPwdTextViews) {
+        for (EditText tv : mPwdTextViews) {
             buffer.append(tv.getText().toString().trim());
         }
         return buffer.toString();
@@ -343,7 +342,7 @@ public class VerificationCodeView extends RelativeLayout {
 
         @Override
         public void afterTextChanged(Editable editable) {
-            String inputStr = editable.toString();
+            String inputStr = editable.toString().toUpperCase();
             if (!TextUtils.isEmpty(inputStr)) {
 
                 String[] strArray = inputStr.split("");
