@@ -10,9 +10,8 @@ import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.text.method.DigitsKeyListener;
-import android.text.method.PasswordTransformationMethod;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -27,6 +26,7 @@ public class DefineCodeView extends LinearLayout implements TextWatcher, View.On
     private String TAG = DefineCodeView.class.getSimpleName();
 
     private Context context;
+    private String text;
     private int count ;//个数
     private int size;//显示文字大小
     private int textColor;
@@ -59,6 +59,7 @@ public class DefineCodeView extends LinearLayout implements TextWatcher, View.On
         super(context, attrs);
         this.context = context;
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CodeEditText);
+        text = typedArray.getString(R.styleable.CodeEditText_vcv_text);
         count = typedArray.getInteger(R.styleable.CodeEditText_count, 17);
         size = typedArray.getInteger(R.styleable.CodeEditText_count, (int) context.getResources().getDimension(R.dimen.qb_px_20));
         textColor = typedArray.getColor(R.styleable.CodeEditText_textColor, Color.WHITE);
@@ -85,18 +86,34 @@ public class DefineCodeView extends LinearLayout implements TextWatcher, View.On
     private void initView() {
         for (int i = 0; i < count; i++) {
             PwdEditText editText = new PwdEditText(context);
-            initEdit(editText, i);
+            initEdit(editText,i, text.charAt(i));
+//            if (text!=null && text.length()>0 && text.length()<=count){
+//            }else {
+//                initEdit(editText,i,' ');
+//            }
             addView(editText);
         }
+
+        setText(text);
+    }
+
+    private void setText(String text) {
+        if (TextUtils.isEmpty(text)){
+            return;
+        }
+
+
+
+
     }
 
     /**
      * 初始化editText的一些属性
-     *
-     * @param editText
+     *  @param editText
      * @param i
+     * @param c
      */
-    private void initEdit(PwdEditText editText, int i) {
+    private void initEdit(PwdEditText editText, int i, char c) {
         int padding = (int) context.getResources().getDimension(R.dimen.qb_px_20);
         LayoutParams params = new LayoutParams(editWidth, editWidth);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
@@ -171,6 +188,7 @@ public class DefineCodeView extends LinearLayout implements TextWatcher, View.On
             if (callBack!=null){
                 callBack.backResult("");
             }
+            Log.e(TAG,"获取焦点的控件onKey id："+view.getId());
             //在第0个时候点击删除键，不删除焦点框；
             if (focusId>0){
                 backFocus(focusId);
@@ -221,7 +239,7 @@ public class DefineCodeView extends LinearLayout implements TextWatcher, View.On
         }
         //如果前面没有空内容控件，且最后一个控件内容不为空，则认为验证码已经输入完全
         EditText lastEdit = (EditText) getChildAt(count - 1);
-        if (lastEdit.getText().length() > 0) {
+        if (lastEdit!=null && lastEdit.getText().length() > 0) {
             lastEdit.requestFocus();
             //返回结果
             backResult();
@@ -253,12 +271,13 @@ public class DefineCodeView extends LinearLayout implements TextWatcher, View.On
         EditText editText;
         for (int i = 0; i < count; i++) {
             editText = (EditText) getChildAt(i);
-            stringBuffer.append(editText.getText());
+            if (editText!=null){
+                stringBuffer.append(editText.getText());
+            }
         }
         //进行回调
         if (null != callBack) {
             Log.e(TAG,"回调结果："+stringBuffer);
-
             callBack.backResult(stringBuffer.toString());
         }
 

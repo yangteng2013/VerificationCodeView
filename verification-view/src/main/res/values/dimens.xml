@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="qb_px_20">10px</dimen>
+    <dimen name="qb_px_20">3px</dimen>
 </resources>

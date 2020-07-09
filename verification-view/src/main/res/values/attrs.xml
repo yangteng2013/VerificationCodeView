@@ -23,6 +23,7 @@
     </declare-styleable>
 
     <declare-styleable name="CodeEditText">
+        <attr name="vcv_text" format="string" />
         <attr name="count" format="integer" />
         <attr name="textSize" format="dimension"/>
         <attr name="textColor" format="color" />
