@@ -167,11 +167,15 @@ public class DefineCodeView extends LinearLayout implements TextWatcher, View.On
 
     @Override
     public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
-        if (keyCode == KeyEvent.KEYCODE_DEL) {
+        if (keyCode == KeyEvent.KEYCODE_DEL && keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
             if (callBack!=null){
                 callBack.backResult("");
             }
-            backFocus(focusId);
+            //在第0个时候点击删除键，不删除焦点框；
+            if (focusId>0){
+                backFocus(focusId);
+            }
+            return true;
         }
         return false;
     }
@@ -228,11 +232,10 @@ public class DefineCodeView extends LinearLayout implements TextWatcher, View.On
      * 删除时往上找焦点
      */
     private void backFocus(int index) {
-        EditText editText;
         for (int i = index; i >= 0; i--) {
-            editText = (EditText) getChildAt(i);
+            EditText editText = (EditText) getChildAt(i);
             editText.setBackgroundDrawable(mEtBackgroundDrawableNormal);
-            if (editText.getText().length() >= 1) {
+            if (!editText.getText().toString().trim().equals("")) {
                 editText.setText("");
                 editText.setCursorVisible(true);
                 editText.setBackgroundDrawable(mEtBackgroundDrawableFocus);
